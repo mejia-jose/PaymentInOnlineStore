@@ -1,0 +1,115 @@
+ .search
+  {
+    background-color: #ffffff;
+    font-weight: bold;
+    color: black;
+    border: none;
+  }
+
+  .search:focus {
+    border-color: #ffffff;
+  }
+
+  .colorPrice
+  {
+    color: #d05e0c;
+    font-weight: bold;
+  }
+
+  .image-container {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+}
+
+.image-container img {
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+    transform: scale(1.1);
+}
+
+.buttonSearch
+{
+  background-color:#09127f;
+  color: #f0f3f6;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+.image-container:hover .button {
+  opacity: 2;
+}
+
+.borderTarjet
+{
+  border: 1px thin;
+  border-color: #e5e5e5;
+}
+
+.buttonCard
+{
+  background-color: #2bb4ee;
+  color: #f0f3f6;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buttonCard:hover{
+  background-color: #e5e5e5;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.contenedorTarjet
+{
+  /* background: #101020;*/
+ /*  background-color: #e5e5e5; */
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 7px
+}
+
+.textName
+{
+  font-size: 14px;
+  font-weight: bold;
+}
+.textDescription
+{
+  font-size: 12px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+
+/*************Detail Product**************/
+.contentTarjetDetail
+{
+  margin-top: 80px;
+  padding: 15px;
+}
+
+.textDescriptionDetail
+{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 10px;
+  font-size: 25px;
+}
+
+.titleProductDetail
+{
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 15px;
+}
+
+/********************Modal******************/
+
+.require
+{
+  color: red;
+}

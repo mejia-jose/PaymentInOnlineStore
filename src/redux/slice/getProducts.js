@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const productsData = localStorage.getItem('products');
+//const productsData = localStorage.getItem('products');
 const initialState =
 {
-    products: productsData ? productsData : []
+    products:  []
 }
 
 export const getProdustsSlice = createSlice ({
@@ -15,7 +15,7 @@ export const getProdustsSlice = createSlice ({
       getProdustsDetail: (state, action) =>
       {
         state.products = action.payload;
-        localStorage.setItem('products', JSON.stringify(state.products));
+        //localStorage.setItem('products', JSON.stringify(state.products));
       }
     }
   

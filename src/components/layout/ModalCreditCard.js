@@ -17,15 +17,7 @@ const ModalCreditCard = ({ isOpen, closeModal }) =>
         navigate(`/detail-delivery`);
     };
 
-    <Delivery
-      address="123 Calle Ficticia, Apartamento 4B, Ciudad de Ejemplo, Estado Ejemplo, Código Postal 12345, País Ejemplo"
-      orderNumber="456789"
-      purchaseDate="15 de julio de 2024"
-      estimatedDeliveryDate="20 de julio de 2024"
-      shippingMethod="Envío Exprés"
-      shippingCost="$10.00"
-      deliveryInstructions="Por favor, dejar el paquete en la puerta principal si no hay respuesta."
-    />
+    <Delivery/>
  
     const [errors, setErrors] = useState({}); //Permite guardarm el estado delos errores
 

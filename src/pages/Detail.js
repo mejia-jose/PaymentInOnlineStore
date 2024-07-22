@@ -12,24 +12,14 @@ import {formatPrice} from '../services/format-price';
 
 function DetailProduct()
 {
-    const dispatch = useDispatch();
-    const cantProductosSelected = useSelector((state) => state.counterProduct.cantProductosSelected);
-
     const location = useLocation();
     const { product } = location.state; //Se obtiene toda la información de un producto
+    console.log(product)
+    const dispatch = useDispatch();
+    const totalCantProductosSelected = useSelector((state) => state.getCantidad.productos);//Se obtiene la información de la cantidad del producto seleccionado
+    const productDetails =  totalCantProductosSelected.find(p => p.idProducto === product.id);
+    const cantProductosSelected = productDetails ? productDetails.cantProductosSelected : 1; // Por ejemplo, 1
    
-    /** Se o btiene la informacion registrada en localStorage **/
-    const savedData = localStorage.getItem('productData');
-    const productData = savedData ? JSON.parse(savedData) : [];
-    
-    /* Buscar el producto específico por 'idProducto' */
-    const productDetails = productData.find(p => p.idProducto === product.id);
-    
-    /* Se obtiene  la cantidad específica del producto, si existe */
-    let cantProductosSelectedOne = 1
-    cantProductosSelectedOne = productDetails ? productDetails.cantProductosSelected : dispatch(getCantidad({cantProductosSelected:cantProductosSelectedOne,idProducto:product.id}))
-
-
     const [modalIsOpen, setIsOpen] = useState(false);
 
     const openModal = () =>
@@ -92,7 +82,7 @@ function DetailProduct()
                                     <i className="fa-solid fa-minus"></i>
                                 </a>
                                 <a className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md buttonCard flex items-center justify-center">
-                                 {cantProductosSelectedOne}
+                                 {cantProductosSelected}
                                 </a>
                                 <a onClick={() => countCantidad('max')} className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md buttonCard flex items-center justify-center">
                                     <i className="fa-solid fa-circle-plus"></i>

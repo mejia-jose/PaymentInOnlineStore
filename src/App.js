@@ -4,6 +4,8 @@ import Store from './pages/Store';
 import Detail from './pages/Detail';
 import './index.css';
 import Delivery from './pages/Delivery';
+import Summary from './pages/Summary';
+import FinalStatus from './pages/FinalStatus';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Route path="/" element={<Store />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/detail-delivery" element={<Delivery />} />
+          <Route path="/summary" element={<Summary />} />
+          <Route path="/final-status" element={<FinalStatus />} />
         </Routes>
       </Router>
     </div> 

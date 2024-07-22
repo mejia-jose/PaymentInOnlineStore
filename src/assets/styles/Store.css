@@ -57,6 +57,22 @@
   cursor: pointer;
 }
 
+.buttonReject
+{
+  background-color: #2bb4ee;
+  color: #f0f3f6;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buttonReject:hover
+{
+  background-color: #bd560d;
+  color: #f0f3f6;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .buttonCard:hover{
   background-color: #e5e5e5;
   color: black;
@@ -112,4 +128,57 @@
 .require
 {
   color: red;
+}
+
+/*********************************Detalle de la entrega *************************************************/
+.containerDelivery
+{
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  margin-top:70px
+}
+
+.section
+ {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top:10px;
+}
+
+.address
+{
+  background-color: #f9f9f9;
+};
+
+
+.infoOther
+{
+  background-color: #fff8e1;
+}
+
+.instructions
+{
+  background-color: #f4f4f4;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.value {
+  margin-left: 10px;
+}
+
+/************************************ Resumen de la compra****************************/
+.pTo
+{
+  padding-top: 85px;
+}
+
+.floeatLeft
+{
+  text-align: justify;
 }

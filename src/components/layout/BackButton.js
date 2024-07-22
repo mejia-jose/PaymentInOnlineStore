@@ -14,8 +14,8 @@ const BackButton = ({ to, label = 'Regresar' }) => {
   };
 
   return (
-    <button onClick={regresar} className="buttonCard px-4 py-2 bg-gray-300 text-gray-800 rounded-md flex items-center justify-center">
-     <i className="fa-solid fa-arrow-left"></i>  { label}
+    <button onClick={regresar} className="buttonReject px-4 py-2 bg-gray-300 text-gray-800 rounded-md flex items-center justify-center">
+     <i className="fa-solid fa-arrow-left p-2"></i>  { label}
     </button>
   );
 };

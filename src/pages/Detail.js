@@ -14,7 +14,6 @@ function DetailProduct()
 {
     const location = useLocation();
     const { product } = location.state; //Se obtiene toda la información de un producto
-    console.log(product)
     const dispatch = useDispatch();
     const totalCantProductosSelected = useSelector((state) => state.getCantidad.productos);//Se obtiene la información de la cantidad del producto seleccionado
     const productDetails =  totalCantProductosSelected.find(p => p.idProducto === product.id);
@@ -61,20 +60,39 @@ function DetailProduct()
     }
   }
 
+  const pathImage = '/assets/images/productos'; // Ruta desde la raíz del servidor
+  const productImage = `${pathImage}/${product.image}`;
+
   return (
 
     <div>
         <Header />
         <div className="container mx-auto p-4" role="main">
             <div className="bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden p-6 contentTarjetDetail">
-            <BackButton to="/" label=" Volver a la tienda" />
+            <BackButton to="/" label=" Volver a la tienda" /><br></br>
                 <div className="flex flex-col md:flex-row">
-                    <img src={product.image} alt={product.name} className="w-full md:w-1/2 h-68 object-cover rounded-md" />
+                    <div className="flex justify-center">
+                        <img
+                            src={productImage}
+                            alt={product.name}
+                            className="w-[45vw] h-auto md:w-[30vw] lg:w-[25vw] xl:w-[35vw] object-cover rounded-md"
+                        />
+                    </div>
+
                     <div className="mt-4 md:mt-0 md:ml-6">
                         <h2 className="text-2xl font-semibold text-gray-800 titleProductDetail">{product.name}</h2>
-                        <p className="text-gray-600 mt-2 textDescriptionDetail">{product.description}</p>
-                        <p className="text-2xl font-bold text-gray-900 mt-4 colorPrice">{formatPrice(product.price)}</p>
-                        <p className="text-lg text-gray-700 mt-2 textDescriptionDetail">Stock disponible: {product.stock}</p>
+                        <div className="p-4">
+                            <p className="text-gray-600 mt-2 text-sm sm:text-base md:text-lg lg:text-xl">
+                                {product.description}
+                            </p>
+                            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mt-4">
+                                {formatPrice(product.price)}
+                            </p>
+                            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mt-2">
+                                Stock disponible: {product.stock}
+                            </p>
+                        </div>
+
                         <div className="flex justify-center mt-4">
                             <div className="flex items-center space-x-2">
                                 <p className="text-lg text-gray-700 mt-2 textDescriptionDetail">Cantidad</p>

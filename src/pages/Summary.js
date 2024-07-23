@@ -5,6 +5,7 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import BackButton from '../components/layout/BackButton';
 import {formatPrice,tarifas} from '../services/format-price';
+import {paymentTransactions,getAcceptanceToken} from '../services/api.service';
 
 // Componente de Acordeón
 const AccordionItem = ({ title, children }) => {
@@ -40,6 +41,8 @@ const Summary = () =>
     /**********Se obtiene la información del modal del store de Redux */
     const dataUser = useSelector((state) => state.getDataUser.dataUser);//Para obtener el estado con la info de redux del usuario
     const product = useSelector((state) => state.getProdusts.products);//Para obtener el estado con la info de redux del producto
+    const dataCard = useSelector((state) => state.getDataUser);
+    //console.log(dataCard)
 
     const totalCantProductosSelected = useSelector((state) => state.getCantidad.productos);//Se obtiene la información de la cantidad del producto seleccionado
     const productDetails =  totalCantProductosSelected.find(p => p.idProducto === product.id);
@@ -51,6 +54,20 @@ const Summary = () =>
     const viewFinalCompra = () =>
     {
         navigate("/final-status");
+    }
+
+    const payment = async () =>
+    {
+        const token = await getAcceptanceToken();
+        const res = await paymentTransactions(
+        {
+            "amount_in_cents": total + tarifas.tarifaBase + tarifas.costoEnvio,
+            "reference":product.id,
+            "customer_email": dataUser.email,
+            "installments": dataCard.cuotas,
+            "token": dataCard.idTokenCard,
+            "accept":token.data
+        });
     }
 
   return (
@@ -138,7 +155,7 @@ const Summary = () =>
                 </ul>
             </AccordionItem>
 
-            <button  onClick={viewFinalCompra} style={{color:'#fff',background:'#bd560d'}} className="w-full buttonCard hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300">
+            <button  onClick={payment} style={{color:'#fff',background:'#bd560d'}} className="w-full buttonCard hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300">
                 Finalizar compra
             </button>
 

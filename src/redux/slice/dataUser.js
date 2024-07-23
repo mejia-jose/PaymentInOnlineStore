@@ -10,7 +10,11 @@ const initialState  =
     dir:'',
     cardNumber:0,
     expiryDate:'',
-    cvv:0
+    cvv:0,
+    cuotas:0,
+    idTokenCard:0,
+    type:'',
+    valideCVV:false
 }
 
 export const getDataUserSlice = createSlice ({
@@ -27,11 +31,18 @@ export const getDataUserSlice = createSlice ({
       {
         const { name, value } = action.payload;
         state[name] = value;  // Actualiza el campo correspondiente en el estado
+      },
+      saveTokenCard : (state,action) =>
+      {
+        const { idTokenCard, type,valideCVV } = action.payload;
+        state.idTokenCard = idTokenCard;
+        state.type = type;
+        state.valideCVV = valideCVV;
       }
     }
   
 });
   
-export const { getDataUser,updateFieldValueForm } = getDataUserSlice.actions;
+export const { getDataUser,updateFieldValueForm,saveTokenCard } = getDataUserSlice.actions;
 export default getDataUserSlice.reducer;
   

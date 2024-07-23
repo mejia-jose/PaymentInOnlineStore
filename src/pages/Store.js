@@ -1,87 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/layout/Header';
 import CardProduct from '../components/layout/CardProduct';
 import Footer from '../components/layout/Footer';
 import '../assets/styles/Store.css';
-import productImage from '../assets/images/1.jpeg';
-
-const products = [
-    {
-       "id": 1,
-      "name": "Auriculares Bose QuietComfort 35 II",
-      "description": "Auriculares con cancelación de ruido activa, ideales para viajar y trabajar. Ofrecen una calidad de sonido excepcional y comodidad para largas sesiones de uso.",
-      "price": "1299000",
-      "stock": 25,
-      "image": productImage
-    },
-    {
-      "id": 2,
-      "name": "Samsung Galaxy S21",
-      "description": "Smartphone con pantalla Dynamic AMOLED 2X de 6.2 pulgadas, procesador Exynos 2100 y cámara triple de 64 MP. Ideal para fotografía y rendimiento alto.",
-      "price": "2299000",
-      "stock": 15,
-      "image": productImage
-    },
-    {
-       "id": 3,
-      "name": "Apple MacBook Air M1",
-      "description": "Laptop ultradelgada con procesador M1 de Apple, pantalla Retina de 13.3 pulgadas y 8GB de RAM. Perfecta para tareas diarias y profesionales.",
-      "price": "3399000",
-      "stock": 10,
-      "image": productImage
-    },
-    {
-      "id":4,
-      "name": "Sony PlayStation 5",
-      "description": "Consola de videojuegos de última generación con gráficos 4K y una experiencia de juego inmersiva. Incluye un control inalámbrico DualSense.",
-      "price": "4399000",
-      "stock": 5,
-      "image": productImage
-    },
-    {
-      "id": 5,
-      "name": "Nike Air Max 270",
-      "description": "Zapatillas deportivas con diseño moderno y comodidad superior gracias a la tecnología Air Max. Ideales para entrenamiento y uso diario.",
-      "price": "649000",
-      "stock": 30,
-      "image": productImage
-    },{
-        "id":6,
-        "name": "Sony PlayStation 5",
-        "description": "Consola de videojuegos de última generación con gráficos 4K y una experiencia de juego inmersiva. Incluye un control inalámbrico DualSense.",
-        "price": "4399000",
-        "stock": 5,
-        "image": productImage
-      },
-      {
-        "id": 7,
-        "name": "Nike Air Max 270",
-        "description": "Zapatillas deportivas con diseño moderno y comodidad superior gracias a la tecnología Air Max. Ideales para entrenamiento y uso diario.",
-        "price": "649000",
-        "stock": 30,
-        "image": productImage
-      },{
-        "id":8,
-        "name": "Sony PlayStation 5",
-        "description": "Consola de videojuegos de última generación con gráficos 4K y una experiencia de juego inmersiva. Incluye un control inalámbrico DualSense.",
-        "price": "4399000",
-        "stock": 5,
-        "image": productImage
-      },
-      {
-        "id": 9,
-        "name": "Nike Air Max 270",
-        "description": "Zapatillas deportivas con diseño moderno y comodidad superior gracias a la tecnología Air Max. Ideales para entrenamiento y uso diario.",
-        "price": "649000",
-        "stock": 30,
-        "image": productImage
-      }
-  ];  
-  
+import { AllProducts}  from '../services/api.service';
 
 function Store()
 {
   const messageError = false;
+  const [products, setProducts] = useState([]); // Estado para almacenar los productos
+  const [loading, setLoading] = useState(true); // Estado para manejar la carga
+  const [error, setError] = useState(null); // Estado para manejar errores
+
+  useEffect(() => {
+      const loadProducts = async () => {
+          try {
+              const productData = await AllProducts(); // Llama al servicio para obtener los datos
+              setProducts(productData); // Establece los productos en el estado
+          } catch (err) {
+              setError(err.message); // Establece el mensaje de error en el estado
+          } finally {
+              setLoading(false); // Actualiza el estado de carga
+          }
+      };
+
+      loadProducts();
+  }, []); // Ejecuta el efecto solo una vez cuando el componente se monta
+
+  if (loading) return <p>Loading...</p>; // Muestra mensaje de carga
+  if (error) return <p>Error: {error}</p>; // Muestra mensaje de error
+
+
   return (
     <div>
       <Header />

@@ -20,9 +20,9 @@ function Header()
         </div>
     
         <nav id="menu" className="hidden md:flex flex-wrap gap-4">
-            <a className="hover:text-gray-400">Hombres</a>
+           {/*  <a className="hover:text-gray-400">Hombres</a>
             <a className="hover:text-gray-400">Mujeres</a>
-            <a className="hover:text-gray-400">Niños</a>
+            <a className="hover:text-gray-400">Niños</a> */}
         </nav>
     
         <div className="hidden md:flex items-center gap-4">
@@ -48,9 +48,9 @@ function Header()
             </svg>
         </button>
         <nav className="flex flex-col space-y-4">
-            <a className="hover:text-gray-400">Hombres</a>
+           {/*  <a className="hover:text-gray-400">Hombres</a>
             <a className="hover:text-gray-400">Mujeres</a>
-            <a className="hover:text-gray-400">Niños</a>
+            <a className="hover:text-gray-400">Niños</a> */}
         </nav>
         </div>
     </div>  

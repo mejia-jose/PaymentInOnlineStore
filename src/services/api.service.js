@@ -1,10 +1,10 @@
 import axios from 'axios';
+import {DevApiUrl,ProdApiUrl} from './utils'
 
 // URL base de la api
-const protocol = window.location.protocol; 
-const host = window.location.hostname; 
-const baseUrl = `${protocol}//${host}`;
-const API_URL = baseUrl+':8000';
+const host = window.location.hostname;
+const API_URL = (host == 'localhost') ? DevApiUrl() : ProdApiUrl();
+console.log(API_URL)
 
 //Permite conectar con mi backen y obtener los productos
 export const AllProducts = async () =>

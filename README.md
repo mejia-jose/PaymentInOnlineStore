@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+Descripción de la app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Nombre: My Fashion Star Store
 
-## Available Scripts
+Descripción:
+La app cuenta página principal que lista productos para vender y una pantalla de detalle del producto con botones para agregar o disminuir la cantidad y un botón para agregar una tarjeta de crédito. También se incluye un modal para ingresar la información de pago y un componente para mostrar la información de entrega. El enrutamiento se maneja con React Router y la gestión del estado se realiza con Redux, Redux Toolkit y LocalStorage.
 
-In the project directory, you can run:
+1.	Página principal del comercio
+-	En esta página se muestran los productos, con la imagen, la descripción, precio y botón de comprar
 
-### `npm start`
+2.	Página del detalle del producto
+Esta página cuenta con lo siguiente:
+-	Imagen del producto
+-	Descripción del producto
+-	Precio del producto
+-	Stock del producto
+-	Botón para aumentar la cantidad de productos a comprar
+-	Botón para disminuir la cantidad de productos a comprar
+-	Botón de pagar con tarjeta de crédito y botón de regresar
+-	Modal que solicita la información de la tarjeta de crédito y del usuario
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3.	Información de la entrega:
+Esta pantalla cuenta con:
+-	Apartado de la Información de contacto para la entrega
+-	Apartado de Datos del pedido
+-	Apartado de Detalles del envío
+-	Botón de regresar y botón de ver el resumen de la compra
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+4.	Resumen de la compra
+Esta pantalla cuenta con lo siguiente:
+-	Botón de regresar
+-	Apartado de la Información del cliente
+-	Apartado de la Información de la tarjeta de crédito
+-	Apartado de la Dirección de entrega
+-	Apartado del Resumen del pago
+-	Botón de finalizar compra
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+5.	Información de estado final
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+6. Vista de 404
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Especificaciones:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+El fronten fue desarrollado con las siguientes tecnologías:
 
-### `npm run eject`
+- Node.js versión 2.15.1
+- React versión 18.3.1
+- React Router versión 6.25.1
+- Redux versión 9.1.2
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Revisar el package.json
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Repositorio:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Url: https://github.com/mejia-jose/PaymentInOnlineStore.git
+Rama : masterFrontend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Url de producción:
 
-## Learn More
+La aplicación a nivel frontend fue desplegada en vercel
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Url: https://payment-in-online-store.vercel.app/
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Documento de evidencias / [text](<public/Pantallas de la aplicación.docx>)

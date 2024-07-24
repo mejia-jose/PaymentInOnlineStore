@@ -110,8 +110,10 @@ const ModalCreditCard = ({ isOpen, closeModal }) =>
       
       if (!cuotas) { return false;}
       //Se Verifica que sea numérico y contenga solo dos dígitos
-      const cuotasRegex = /^\d{2}$/;
+      const cuotasRegex = /^\d{1,2}$/;
       if (!cuotasRegex.test(cuotas)) { return false; }
+
+      if(cuotas < 1){  return false}
       // Si todas las validaciones pasan
       return true;
     }
@@ -187,7 +189,6 @@ const ModalCreditCard = ({ isOpen, closeModal }) =>
     
         try
         {
-         
           const response = await TokenCard({
             number: formData.cardNumber,
             cvc: formData.cvv,
@@ -197,10 +198,11 @@ const ModalCreditCard = ({ isOpen, closeModal }) =>
           });
     
           const responseData = response.data; 
+          console.log(responseData)
 
           if (responseData.status !== 'CREATED') 
           {
-            throw new Error('No se pudo validar la tarjeta de crédito');
+            throw new Error('No se pudo validar la tarjeta de crédito: ');
           }
 
           dispatch(saveTokenCard({ idTokenCard:responseData.data.id, type:responseData.data.brand,valideCVV:responseData.data.created_with_cvc}));
@@ -228,9 +230,9 @@ const ModalCreditCard = ({ isOpen, closeModal }) =>
   >
     <div className="bg-white rounded-lg shadow-lg w-full max-w-lg max-h-screen overflow-y-auto p-4 sm:p-6 mx-auto">
       <h2 className="text-xl sm:text-2xl font-semibold mb-4">Información de Pago</h2>
-      { loading && <div class="loader-container">
-          <div class="loader"></div>
-          <div class="loader-text">Validando información...</div>
+      { loading && <div className="loader-container">
+          <div className="loader"></div>
+          <div className="loader-text">Validando información...</div>
         </div>
       }
       <form onSubmit={saveData}>

@@ -14,7 +14,11 @@ const initialState  =
     cuotas:0,
     idTokenCard:0,
     type:'',
-    valideCVV:false
+    valideCVV:false,
+    created_at:'',
+    idTransaction:0,
+    referencia:'',
+    estadoCompra:'Pendiente',
 }
 
 export const getDataUserSlice = createSlice ({
@@ -38,11 +42,20 @@ export const getDataUserSlice = createSlice ({
         state.idTokenCard = idTokenCard;
         state.type = type;
         state.valideCVV = valideCVV;
+      },
+
+      getTransactions : (state,action) =>
+      {
+          const { created_at, idTransaction, referencia,estadoCompra } = action.payload;
+          state.created_at = created_at;
+          state.idTransaction = idTransaction;
+          state.referencia = referencia;
+          state.estadoCompra = estadoCompra
       }
     }
   
 });
   
-export const { getDataUser,updateFieldValueForm,saveTokenCard } = getDataUserSlice.actions;
+export const { getDataUser,updateFieldValueForm,saveTokenCard,getTransactions } = getDataUserSlice.actions;
 export default getDataUserSlice.reducer;
   

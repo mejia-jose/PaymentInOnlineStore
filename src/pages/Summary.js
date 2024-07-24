@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import BackButton from '../components/layout/BackButton';
 import {formatPrice,tarifas} from '../services/format-price';
 import {paymentTransactions,getAcceptanceToken} from '../services/api.service';
+import { getTransactions } from '../redux/slice/dataUser';
 
 // Componente de Acordeón
 const AccordionItem = ({ title, children }) => {
@@ -39,10 +40,11 @@ const totalMonto = (precio,cantidad) =>
 const Summary = () =>
 {
     /**********Se obtiene la información del modal del store de Redux */
+    const dispatch = useDispatch(); //Para disparar la acion en redux
     const dataUser = useSelector((state) => state.getDataUser.dataUser);//Para obtener el estado con la info de redux del usuario
     const product = useSelector((state) => state.getProdusts.products);//Para obtener el estado con la info de redux del producto
     const dataCard = useSelector((state) => state.getDataUser);
-    //console.log(dataCard)
+    const [loading, setLoading] = useState(false);
 
     const totalCantProductosSelected = useSelector((state) => state.getCantidad.productos);//Se obtiene la información de la cantidad del producto seleccionado
     const productDetails =  totalCantProductosSelected.find(p => p.idProducto === product.id);
@@ -58,16 +60,34 @@ const Summary = () =>
 
     const payment = async () =>
     {
-        const token = await getAcceptanceToken();
-        const res = await paymentTransactions(
+        
+        setLoading(true);
+    
+        try
         {
-            "amount_in_cents": total + tarifas.tarifaBase + tarifas.costoEnvio,
-            "reference":product.id,
-            "customer_email": dataUser.email,
-            "installments": dataCard.cuotas,
-            "token": dataCard.idTokenCard,
-            "accept":token.data
-        });
+            
+            const token = await getAcceptanceToken();
+            const res = await paymentTransactions(
+            {
+                "amount_in_cents": total + tarifas.tarifaBase + tarifas.costoEnvio,
+                "reference":product.id,
+                "customer_email": dataUser.email,
+                "installments": dataCard.cuotas,
+                "token": dataCard.idTokenCard,
+                "accept":token.data
+            }); 
+
+            if (!res && res.statusText !== 'Created') 
+            {
+              throw new Error('No se ha podido efectuar el pago. Por favor, verifique su información e intente nuevamente. Si el problema persiste, contacte con el soporte técnico.');
+            }
+
+            const  data  = res.data;
+
+            dispatch(getTransactions({ created_at:data.data.created_at, idTransaction: data.data.id, referencia: data.data.reference,estadoCompra: data.data.status}));
+            viewFinalCompra();
+
+        } catch (error){  alert(error) } finally {  setLoading(false); }
     }
 
   return (
@@ -77,6 +97,11 @@ const Summary = () =>
             <BackButton to="/detail-delivery" label="Información de entrega" /><br></br>
             <div className="max-w-lg mx-auto bg-white p-4 rounded-lg shadow-md">
             <h2 className="text-lg font-semibold mb-3 text-gray-800">Resumen de la compra</h2>
+            { loading && <div className="loader-container">
+                <div className="loader"></div>
+                <div className="loader-text">Validando información, ya pronto se efectuará el pago...</div>
+                </div>
+            }
 
             <AccordionItem title="Información del cliente">
                 <ul className="text-gray-700">

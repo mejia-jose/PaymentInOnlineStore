@@ -209,8 +209,36 @@
   text-align: center;
   margin-top: 10px;
   font-size: 14px;
-  left: 52%;
+  left: 50%;
   top: 50%;
   color: #555;
   font-weight: bold;
+}
+
+.contentFinal
+{
+  text-align: justify;
+}
+
+.titleFinal
+{
+  font-weight: bold;
+}
+
+/************************** Loanding *************************/
+spinner-border {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: currentColor;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

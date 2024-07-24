@@ -63,6 +63,20 @@ function DetailProduct()
   const pathImage = '/assets/images/productos'; // Ruta desde la raíz del servidor
   const productImage = `${pathImage}/${product.image}`;
 
+  //Se maneja el estado de la animación de las imagenes
+  const [zoom, setZoom] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const stateMouseEnter = () => setZoom(true);
+  const stateMouseLeve = () => setZoom(false);
+  const stateMouseMove = (e) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top) / height) * 100;
+    setPosition({ x, y });
+  };
+
+
   return (
 
     <div>
@@ -72,11 +86,19 @@ function DetailProduct()
             <BackButton to="/" label=" Volver a la tienda" /><br></br>
                 <div className="flex flex-col md:flex-row">
                     <div className="flex justify-center">
-                        <img
-                            src={productImage}
-                            alt={product.name}
-                            className="w-[45vw] h-auto md:w-[30vw] lg:w-[25vw] xl:w-[35vw] object-cover rounded-md"
-                        />
+                        <div
+                            className="relative w-full max-w-[60vw] md:max-w-[45vw] lg:max-w-[30vw] lg:h-auto overflow-hidden rounded-md"
+                            onMouseEnter={stateMouseEnter}
+                            onMouseLeave={stateMouseLeve}
+                            onMouseMove={stateMouseMove}
+                            >
+                                <img
+                                    src={productImage}
+                                    alt={product.name}
+                                    className={`w-full h-full object-cover transition-transform duration-300 ease-in-out ${zoom ? 'transform scale-150' : ''}`}
+                                    style={{ transformOrigin: `${position.x}% ${position.y}%` }}
+                                />
+                        </div>
                     </div>
 
                     <div className="mt-4 md:mt-0 md:ml-6">
@@ -85,7 +107,7 @@ function DetailProduct()
                             <p className="text-gray-600 mt-2 text-sm sm:text-base md:text-lg lg:text-xl">
                                 {product.description}
                             </p>
-                            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mt-4">
+                            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mt-4 colorPrice">
                                 {formatPrice(product.price)}
                             </p>
                             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mt-2">

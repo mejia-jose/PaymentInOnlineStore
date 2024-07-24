@@ -18,11 +18,8 @@ function CardProduct({ product })
     };
 
     const pathImage = '/assets/images/productos'; // Ruta desde la raíz del servidor
-
-  const productImage = `${pathImage}/${product.image}`;
+    const productImage = `${pathImage}/${product.image}`;  
       
-    //contenedorTarjet
-    
   return (
     <div className="border p-6  contenedorTarjet borderTarjet shadow-md rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-xl ">
       <div className="flex justify-center">

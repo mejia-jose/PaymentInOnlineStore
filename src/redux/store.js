@@ -1,7 +1,7 @@
 // src/store.js
 import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
-import { persistReducer } from 'redux-persist';
+import { persistReducer,persistStore  } from 'redux-persist';
 import { combineReducers } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import getCantidad from './slice/counterProduct';
@@ -33,4 +33,5 @@ export const store = configureStore(
   }),
 });
 
-export default store;
+//export default store;
+export const persistor = persistStore(store);

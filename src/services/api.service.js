@@ -11,7 +11,7 @@ export const AllProducts = async () =>
 {
     try
     {
-        const response = await axios.get(API_URL+'/api/product/all', {
+        const response = await axios.get(API_URL+'/product/all', {
             headers: {
               'Content-Type': 'application/json',
             }
@@ -31,7 +31,7 @@ export const TokenCard = async (data) =>
 {
     try 
     {
-      const response = await axios.post(`${API_URL}/api/transaction/token-card`, data);
+      const response = await axios.post(`${API_URL}/transaction/token-card`, data);
       return response;
     } catch (error) 
     {
@@ -45,7 +45,7 @@ export const getAcceptanceToken = async () =>
 {
     try 
     {
-        const response = await axios.get(`${API_URL}/api/transaction/acceptance-token`);
+        const response = await axios.get(`${API_URL}/transaction/acceptance-token`);
         return response;
     } catch (error) 
     {
@@ -59,7 +59,7 @@ export const paymentTransactions = async (data) =>
 {
     try 
     {
-        const response = await axios.post(`${API_URL}/api/transaction/payment`, data);
+        const response = await axios.post(`${API_URL}/transaction/payment`, data);
         if (response && response.data)
         {
           return response;
@@ -82,7 +82,7 @@ export const consultPaymentStatus = async (idTransaction,product,cantProductosSe
 
   try 
   {
-     const response = await axios.post(`${API_URL}/api/transaction/status-payment/`, {
+     const response = await axios.post(`${API_URL}/transaction/status-payment/`, {
         idTransaction: idTransaction,
         product: product,
         cantProductosSelected: cantProductosSelected,

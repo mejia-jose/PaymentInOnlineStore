@@ -4,11 +4,11 @@ export const DevApiUrl = () => {
     const host = window.location.hostname; 
     const baseUrl = `${protocol}//${host}`;
     const API_URL = `${baseUrl}:8000`; // Asumiendo que el puerto 8000 es para desarrollo
-    return API_URL;
+    return API_URL+'/api';
 };
 
 export const ProdApiUrl = () => 
 {
-    const PROD_API_URL = 'https://api.tuservidor.com';
+    const PROD_API_URL = 'https://api.store.jmejia.shop/api';
     return PROD_API_URL;
 };

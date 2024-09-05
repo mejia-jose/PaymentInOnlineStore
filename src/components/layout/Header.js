@@ -20,8 +20,8 @@ function Header()
         </div>
     
         <nav id="menu" className="hidden md:flex flex-wrap gap-4">
-           {/*  <a className="hover:text-gray-400">Hombres</a>
-            <a className="hover:text-gray-400">Mujeres</a>
+             <a className="hover:text-gray-400" href='/bpmn'>bpmn</a>
+            {/*<a className="hover:text-gray-400">Mujeres</a>
             <a className="hover:text-gray-400">Niños</a> */}
         </nav>
     

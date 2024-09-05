@@ -26,6 +26,29 @@ export const AllProducts = async () =>
     }
 };
 
+//Función que permite buscar porductos por texto
+export const searchProducts = async (searchParams) =>
+{
+    try
+    {
+        
+        const response = await axios.get(`http://localhost:8000/api/product/search/${searchParams}`, {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            timeout: 10000 // 10 segundos, ajusta según sea necesario
+          });
+          
+        //console.log(response);
+
+        return response;
+    } catch (error)
+    {
+        console.error('Ah ocurrido un error al realizar la petición a la API:', error);
+        throw error; 
+    }
+}
+
 //Permite realizar la petición para obtener el token de la tarjeta de crédito
 export const TokenCard = async (data) =>
 {

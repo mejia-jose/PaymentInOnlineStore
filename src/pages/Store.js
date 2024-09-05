@@ -3,7 +3,7 @@ import Header from '../components/layout/Header';
 import CardProduct from '../components/layout/CardProduct';
 import Footer from '../components/layout/Footer';
 import '../assets/styles/Store.css';
-import { AllProducts}  from '../services/api.service';
+import { AllProducts,searchProducts}  from '../services/api.service';
 
 function Store()
 {
@@ -11,25 +11,41 @@ function Store()
   const [products, setProducts] = useState([]); // Estado para almacenar los productos
   const [loading, setLoading] = useState(true); // Estado para manejar la carga
   const [error, setError] = useState(null); // Estado para manejar errores
+  const [buscarProductos,setBuscarProductos] = useState([]);
+  const handleChangeSearch = (event) => { setBuscarProductos(event.target.value);};
 
-  useEffect(() => {
-      const loadProducts = async () => {
-          try {
-              const productData = await AllProducts(); // Llama al servicio para obtener los datos
-              setProducts(productData); // Establece los productos en el estado
-          } catch (err) {
-              setError(err.message); // Establece el mensaje de error en el estado
-          } finally {
-              setLoading(false); // Actualiza el estado de carga
-          }
-      };
+    useEffect(() => 
+    {
+        const loadProducts = async () => {
+            try {
+                const productData = await AllProducts(); // Llama al servicio para obtener los datos
+                setProducts(productData); // Establece los productos en el estado
+            } catch (err) {
+                setError(err.message); // Establece el mensaje de error en el estado
+            } finally {
+                setLoading(false); // Actualiza el estado de carga
+            }
+        };
 
-      loadProducts();
-  }, []); // Ejecuta el efecto solo una vez cuando el componente se monta
+        loadProducts();
+    }, []); // Ejecuta el efecto solo una vez cuando el componente se monta
+
+    const searchProductsButton =  async () =>
+    {
+         if (buscarProductos.trim()) 
+        {
+            try
+            {
+              const res = await searchProducts(buscarProductos);
+              setProducts(res);
+            } catch (err) {
+              setError(err.message); 
+            }
+        }
+    }
 
   if (loading) return <p>Loading...</p>; // Muestra mensaje de carga
   if (error) return <p>Error: {error}</p>; // Muestra mensaje de error
-
 
   return (
     <div>
@@ -45,7 +61,7 @@ function Store()
             </div>
             
             {/* Título */}
-            <div className="mb-4">
+            <div className="mb-4 p-8">
                 <h3 className="text-left text-xl font-semibold">
                 Explora nuestra amplia selección de contenido en toda y cada una de nuestras marcas certificadas a nivel mundial.
                 </h3>
@@ -65,16 +81,26 @@ function Store()
                 )}
                 
                 {/* Buscador */}
-                <div className="flex items-center space-x-4 mb-4">
-                    <div className="flex-1">
-                    <div className="flex">
-                        <input className="form-input search block w-full border border-gray-300 rounded-md py-2 px-3" type="text" placeholder="Buscar..."/>
-                        <button type="button" className="buttonCard ml-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center space-x-2">
-                         <i className="fas fa-search"></i> <span>Buscar</span>
-                        </button>
+                <form onSubmit={searchProductsButton}>
+                    <div className="flex items-center space-x-4 mb-4">
+                        <div className="flex-1">
+                            <div className="flex">
+                            
+                                <input 
+                                name="buscar"
+                                className="form-input search block w-full border border-gray-300 rounded-md py-2 px-3" 
+                                type="text" placeholder="Buscar..."
+                                value={buscarProductos} 
+                                onChange={handleChangeSearch}
+                                required
+                                />
+                                <button type="submit" className="buttonReject ml-2 px-4 py-2 bg-blue-500 text-white rounded-md flex items-center space-x-2">
+                                <i className="fas fa-search"></i> <span>Buscar</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
+                </form>
                 
                 {/* Tarjetas de contenido */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -86,9 +112,9 @@ function Store()
                 {/* Paginación */}
                 <div className="flex justify-center mt-4">
                     <div className="flex space-x-2">
-                    <a className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md buttonCard">Anterior</a>
-                    <a className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md buttonCard">1</a>
-                    <a className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md buttonCard">Siguiente</a>
+                    <a className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md buttonReject">Anterior</a>
+                    <a className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md buttonReject">1</a>
+                    <a className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md buttonReject">Siguiente</a>
                     </div>
                 </div>
                 

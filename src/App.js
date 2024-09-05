@@ -7,7 +7,9 @@ import './index.css';
 import Delivery from './pages/Delivery';
 import Summary from './pages/Summary';
 import FinalStatus from './pages/FinalStatus';
-import NotFound from './pages/NoFound';
+import NotFound from './pages/NoFound'; 
+import Bpmn from './pages/BPMN';
+import Modeler from './pages/Modeler';
 import Loanding from './components/layout/Loanding';
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
             <Route path="/summary" element={<Summary />} />
             <Route path="/final-status" element={<FinalStatus />} />
             <Route path="*" element={<NotFound />} />
+            <Route path='/bpmn' element={ <Bpmn/>} />
+            <Route path='/modelo' element={ <Modeler/>} />
         </Routes>
     </Router>
 

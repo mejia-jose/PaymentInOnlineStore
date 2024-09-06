@@ -148,8 +148,8 @@ const Modeler = () => {
   return (
     <div ref={containerRef} className="content" id="js-drop-zone">
       <div className="message intro">
-        <div className="note">
-          Drop BPMN diagram from your desktop or <a id="js-create-diagram" onClick={createNewDiagram}>Nuevo Diagrama</a>
+        <div className="note cursorPointer">
+          <a id="js-create-diagram" onClick={createNewDiagram}> <i className="fa-regular fa-folder-open fa-2x"></i> Abrir diagrama</a>
         </div>
       </div>
 
@@ -165,35 +165,32 @@ const Modeler = () => {
 
       <div className="canvas" id="js-canvas"></div>
 
-      <div className="io-import-export">
+      <div className="io-import-export centerIcons">
+        <ul className="io-import io-control io-control-list io-horizontal">
+          <li>
+            <button title="open BPMN diagram from local file system" jsaction="click:bio.openLocal">
+            <a id="js-create-diagram" onClick={createNewDiagram}> <i className="fa-regular fa-folder-open fa-2x"></i> </a>
+            </button>
+          </li>
+          <li className="vr"></li>
+          <li>
+            <button title="create new BPMN diagram" jsaction="click:bio.createNew">
+              <i className="fa-solid fa-circle-plus fa-2x"></i>
+            </button>
+          </li>
+          <li>
+            <a  id="js-download-diagram" href target="_blank" className="download cursorPointer" title="Download as BPMN 2.0 file" jswidget="downloadDiagram" data-track="diagram:download-bpmn">
+              <i className="fa-solid fa-download fa-2x"></i>
+            </a>
+          </li>
+          <li>
+            <a target="_blank" id="js-download-svg" href className="download cursorPointer" title="Download as SVG image" jswidget="downloadSVG" data-track="diagram:download-svg">
+              <i className="fa-solid fa-image fa-2x"></i>
+            </a>
+          </li>
+        </ul>
 
-    <ul className="io-import io-control io-control-list io-horizontal">
-      <li>
-        <button title="open BPMN diagram from local file system" jsaction="click:bio.openLocal">
-          <span className="icon-open"></span>
-        </button>
-      </li>
-      <li className="vr"></li>
-      <li>
-        <button title="create new BPMN diagram" jsaction="click:bio.createNew">
-          <span className="icon-plus-circled"></span>
-        </button>
-      </li>
-    </ul>
-
-    <ul className="io-export io-control io-control-list io-horizontal">
-      <li>
-        <a target="_blank" href className="download" title="Download as BPMN 2.0 file" jswidget="downloadDiagram" data-track="diagram:download-bpmn">
-          <span className="icon-download"></span>
-        </a>
-      </li>
-      <li>
-        <a target="_blank" href className="download" title="Download as SVG image" jswidget="downloadSVG" data-track="diagram:download-svg">
-          <span className="icon-picture"></span>
-        </a>
-      </li>
-    </ul>
-  </div>
+      </div>
     </div>
   );
 };

@@ -102,3 +102,37 @@
   .buttons a.active {
     opacity: 1.0;
   }
+
+  .io-horizontal {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+  
+  .io-horizontal li {
+    margin-right: 15px; /* Espacio entre los elementos */
+  }
+  
+  .io-horizontal li:last-child {
+    margin-right: 0; /* El último elemento no necesita margen derecho */
+  }
+  
+  .vr {
+    width: 1px;
+    height: 40px;
+    background-color: #ccc;
+  }
+
+  .centerIcons
+  {
+    display: flex;
+  justify-content: center;
+  }
+
+  .cursorPointer
+  {
+    cursor: pointer;
+  }
+  
